@@ -22,10 +22,10 @@ def get_data(input_location):
         
         reader = csv.reader(f, delimiter=',')
         a=next(reader) 
-        
-        Product = a.index('Product')
-        Date_received = a.index('Date received')
-        Company = a.index('Company')
+        a=[x.lower() for x in a]
+        Product = a.index('product')
+        Date_received = a.index('date received')
+        Company = a.index('company')
         
         for row in reader:
             datastack.append(tuple([row[Product].lower(),row[Date_received][:4],row[Company].lower()]))
