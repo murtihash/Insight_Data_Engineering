@@ -21,12 +21,14 @@ def get_data(input_location):
         datastack=[]
         
         reader = csv.reader(f, delimiter=',')
-        next(reader)                 
+        a=next(reader) 
+        
         for row in reader:
-            datastack.append(tuple([row[1].lower(),row[0][:4],row[7].lower()]))
+            datastack.append(tuple([row[a.index('Product')].lower(),row[a.index('Date received')][:4],row[a.index('Company')].lower()]))
             
             
     return datastack
+
 
 """
 
@@ -89,3 +91,4 @@ def main():
     
 if __name__ == '__main__':
     main()
+    
