@@ -9,14 +9,10 @@ import operator as OPR
 
 Csv Reader from csv module to populate only required columns,
 and change required name columns to lower case, select year from date.
-Used next(reader) to skip first line, one other way to read could be with dictreader and
-use name of columns to get them, but using plain csvreader is slightly faster. 
+Used next(reader) to skip first line.
 
-IF input data does not always have the same order of columns, then DictReader should be used..
 
 """
-
-
 
 def get_data(input_location):
     
@@ -25,15 +21,12 @@ def get_data(input_location):
         datastack=[]
         
         reader = csv.reader(f, delimiter=',')
-        next(reader)                 #SKIP first line of headers
+        next(reader)                 
         for row in reader:
-            datastack.append([row[1].lower(),row[0][:4],row[7].lower()])
+            datastack.append(tuple([row[1].lower(),row[0][:4],row[7].lower()]))
             
             
     return datastack
-
-
-    
 
 """
 
@@ -59,10 +52,6 @@ def prepare_data(data):
         yield (k[0],k[1],len(a),len(COLL.Counter(a).keys()),round((COLL.Counter(a).most_common(1)[0][1]/len(a))*100))
 
 
-        
-        
-        
-        
         
 """
 
@@ -100,4 +89,3 @@ def main():
     
 if __name__ == '__main__':
     main()
-    
